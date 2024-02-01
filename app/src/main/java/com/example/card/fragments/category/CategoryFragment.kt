@@ -11,7 +11,6 @@ import com.example.card.App
 import com.example.card.R
 import com.example.card.data.room.model.CategoryModel
 import com.example.card.databinding.FragmentCategoryBinding
-import com.example.card.fragments.home.HomeAdapter
 
 
 class CategoryFragment : Fragment() {
@@ -65,7 +64,7 @@ class CategoryFragment : Fragment() {
         }
     }
 
-    override fun OnClick(pos: Int, list: List<CategoryModel>) {
+    fun OnClick(pos: Int, list: List<CategoryModel>) {
         val bundle  = Bundle()
         val cat = ArrayList(list)
         bundle.putSerializable("pos", cat)

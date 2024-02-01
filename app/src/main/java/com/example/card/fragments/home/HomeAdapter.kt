@@ -1,7 +1,6 @@
 package com.example.card.fragments.home
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -10,7 +9,7 @@ import com.example.card.data.room.model.CategoryModel
 import com.example.card.databinding.ItemHomeBinding
 
 class HomeAdapter(
-    private val click: Context
+    private val click: HomeFragment
 ): RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
 
     private val list = ArrayList<CardModel>()
