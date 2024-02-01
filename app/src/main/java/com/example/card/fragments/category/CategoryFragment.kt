@@ -29,46 +29,9 @@ class CategoryFragment : Fragment() {
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        initOnBoard()
-        initAdapter()
         binding.btnAdd.setOnClickListener {
             findNavController().navigate(R.id.addCategoryFragment)
         }
-    }
-
-    private fun initAdapter() {
-        adapter = CategoryAdapter(this)
-        adapter.setList(App.database.getDao().getAllCard())
-        binding.rvMain.adapter = adapter
-    }
-
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        adapter = CategoryAdapter(this)
-        adapter.setList(App.database.getDao().getAllCard())
-        binding.rvMain.adapter = adapter
-    }
-
-    override fun onStart() {
-        super.onStart()
-        adapter = CategoryAdapter(this)
-        adapter.setList(App.database.getDao().getAllCard())
-        binding.rvMain.adapter = adapter
-    }
-
-    fun initOnBoard() {
-        if (!App.prefs.isShow()) {
-            App.prefs.changeShow(true)
-            findNavController().navigate(R.id.onBoardFragment)
-        }
-    }
-
-    fun OnClick(pos: Int, list: List<CategoryModel>) {
-        val bundle  = Bundle()
-        val cat = ArrayList(list)
-        bundle.putSerializable("pos", cat)
-        findNavController().navigate(R.id.categoryFragment, bundle)
     }
 
 }

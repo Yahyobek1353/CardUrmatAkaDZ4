@@ -12,7 +12,7 @@ import com.example.card.fragments.home.HomeAdapter
 
 @Suppress("UNREACHABLE_CODE")
 class CategoryAdapter(
-    private val click: Parcel
+    private val click: CategoryFragment
 ): RecyclerView.Adapter<HomeAdapter.HomeViewHolder>(), Parcelable {
 
     private val list = ArrayList<CardModel>()
