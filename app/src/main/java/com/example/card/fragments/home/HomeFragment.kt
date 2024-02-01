@@ -6,9 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.example.card.App
 import com.example.card.R
 import com.example.card.data.room.model.CategoryModel

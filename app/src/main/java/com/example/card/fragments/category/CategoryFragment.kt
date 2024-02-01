@@ -1,17 +1,17 @@
 package com.example.card.fragments.category
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import android.widget.Toast.makeText
 import androidx.navigation.fragment.findNavController
+import com.example.card.App
 import com.example.card.R
 import com.example.card.data.room.model.CategoryModel
 import com.example.card.databinding.FragmentCategoryBinding
-import com.example.card.databinding.FragmentHomeBinding
+import com.example.card.fragments.home.HomeAdapter
 
 
 class CategoryFragment : Fragment() {
@@ -19,25 +19,57 @@ class CategoryFragment : Fragment() {
 
     private lateinit var binding: FragmentCategoryBinding
 
+    private lateinit var adapter: CategoryAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentCategoryBinding.inflate(inflater, container, false)
+    ): View {
         return binding.root
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        binding.btnAdd.setOnClickListener{
-            findNavController().navigateUp()
+        initOnBoard()
+        initAdapter()
+        binding.btnAdd.setOnClickListener {
+            findNavController().navigate(R.id.addCategoryFragment)
         }
+    }
 
-        if (arguments != null) {
-            val list = arguments?.getSerializable("pos") as List<CategoryModel>
-            makeText(requireContext(), list[0].name, Toast.LENGTH_SHORT).show()
+    private fun initAdapter() {
+        adapter = CategoryAdapter(this)
+        adapter.setList(App.database.getDao().getAllCard())
+        binding.rvMain.adapter = adapter
+    }
+
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        adapter = CategoryAdapter(this)
+        adapter.setList(App.database.getDao().getAllCard())
+        binding.rvMain.adapter = adapter
+    }
+
+    override fun onStart() {
+        super.onStart()
+        adapter = CategoryAdapter(this)
+        adapter.setList(App.database.getDao().getAllCard())
+        binding.rvMain.adapter = adapter
+    }
+
+    fun initOnBoard() {
+        if (!App.prefs.isShow()) {
+            App.prefs.changeShow(true)
+            findNavController().navigate(R.id.onBoardFragment)
         }
+    }
 
+    override fun OnClick(pos: Int, list: List<CategoryModel>) {
+        val bundle  = Bundle()
+        val cat = ArrayList(list)
+        bundle.putSerializable("pos", cat)
+        findNavController().navigate(R.id.categoryFragment, bundle)
     }
 
 }

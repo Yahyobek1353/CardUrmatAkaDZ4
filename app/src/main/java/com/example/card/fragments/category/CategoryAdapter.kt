@@ -1,16 +1,16 @@
-package com.example.card.fragments.home
+package com.example.card.fragments.category
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.card.data.room.model.CardModel
 import com.example.card.data.room.model.CategoryModel
 import com.example.card.databinding.ItemHomeBinding
+import com.example.card.fragments.home.HomeAdapter
 
-class HomeAdapter(
-    private val click: Context
+class CategoryAdapter(
+    private val click: CategoryFragment
 ): RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
 
     private val list = ArrayList<CardModel>()
@@ -22,14 +22,14 @@ class HomeAdapter(
     }
 
 
-    inner class HomeViewHolder(private val binding: ItemHomeBinding): RecyclerView.ViewHolder(binding.root) {
+    inner class CategoryViewHolder(private val binding: ItemHomeBinding): RecyclerView.ViewHolder(binding.root) {
         fun onBind(pos: Int) {
             binding.txtName.text = list[pos].name
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
-        return HomeViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryAdapter.CategoryViewHolder {
+        return CategoryViewHolder(
             ItemHomeBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
@@ -38,9 +38,11 @@ class HomeAdapter(
         )
     }
 
+
+
     override fun getItemCount() = list.size
 
-    override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: HomeAdapter.HomeViewHolder, position: Int) {
         holder.onBind(position)
         holder.itemView.setOnClickListener {
             click.OnClick(position, list[position].list)
