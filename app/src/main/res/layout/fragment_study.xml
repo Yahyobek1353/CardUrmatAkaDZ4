@@ -1,0 +1,39 @@
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_margin="20dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.add_category.AddCategoryFragment">
+
+    <TextView
+        android:id="@+id/name_category"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="26sp"
+        android:textAlignment="center"
+        android:text="Name category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+    <ImageView
+        android:scaleType="centerCrop"
+        android:src="@drawable/babochka_1"
+        android:id="@+id/img_category"
+        android:layout_marginVertical="40dp"
+        android:layout_width="150dp"
+        android:layout_gravity="center"
+        android:layout_height="150dp"/>
+
+
+    <Button
+        android:backgroundTint="@color/black"
+        android:id="@+id/btn_back"
+        android:text="назад"
+        android:textAllCaps="true"
+        android:layout_marginVertical="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

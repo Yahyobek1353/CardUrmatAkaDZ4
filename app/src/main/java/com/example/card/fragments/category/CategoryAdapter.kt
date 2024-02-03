@@ -1,71 +1,42 @@
 package com.example.card.fragments.category
 
-import android.annotation.SuppressLint
-import android.os.Parcel
-import android.os.Parcelable
+
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.card.data.room.model.CardModel
 import com.example.card.data.room.model.CategoryModel
-import com.example.card.databinding.ItemHomeBinding
-import com.example.card.fragments.home.HomeAdapter
-
-@Suppress("UNREACHABLE_CODE")
-class CategoryAdapter(
-    private val click: CategoryFragment
-): RecyclerView.Adapter<HomeAdapter.HomeViewHolder>(), Parcelable {
-
-    private val list = ArrayList<CardModel>()
+import com.example.card.databinding.ItemCotegoryBinding
 
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun setList(list: List<CardModel>) {
+class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
+    private val list = ArrayList<CategoryModel>()
+
+    fun setList(list : List<CategoryModel>){
         this.list.addAll(list)
         notifyDataSetChanged()
     }
+    inner class CategoryViewHolder(private var binding: ItemCotegoryBinding) : RecyclerView.ViewHolder(binding.root){
 
-
-    inner class CategoryViewHolder(private val binding: ItemHomeBinding): RecyclerView.ViewHolder(binding.root) {
-        fun onBind(pos: Int) {
-            binding.txtName.text = list[pos].name
+        fun OnBind(position: Int){
+            binding.txtName.text = list[position].name.toString()
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeAdapter.HomeViewHolder {
-        TODO("Not yet implemented")
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
+        return CategoryViewHolder(
+            ItemCotegoryBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
     }
-
 
     override fun getItemCount() = list.size
 
-    override fun onBindViewHolder(holder: HomeAdapter.HomeViewHolder, position: Int) {
-        holder.onBind(position)
-        holder.itemView.setOnClickListener {
-            click.OnClick(position, list[position].list)
-        }
-    }
-
-
-    interface Result {
-        fun OnClick(pos: Int, list: List<CategoryModel>)
-    }
-
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
-
-    }
-
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    companion object CREATOR : Parcelable.Creator<CategoryAdapter> {
-        override fun createFromParcel(parcel: Parcel): CategoryAdapter {
-            return CategoryAdapter(parcel)
-        }
-
-        override fun newArray(size: Int): Array<CategoryAdapter?> {
-            return arrayOfNulls(size)
-        }
+    override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
+        holder.OnBind(position)
     }
 
 }
+

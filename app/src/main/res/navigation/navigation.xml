@@ -39,4 +39,8 @@
         android:name="com.example.card.fragments.add_category.AddCategoryFragment"
         android:label="fragment_add_category"
         tools:layout="@layout/fragment_add_category" />
+    <dialog
+        android:id="@+id/studyFragment"
+        android:name="com.example.card.fragments.stadyFragment.StudyFragment"
+        android:label="StudyFragment" />
 </navigation>

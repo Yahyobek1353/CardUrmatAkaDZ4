@@ -1,6 +1,5 @@
 package com.example.card.fragments.home
 
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -31,26 +30,14 @@ class HomeFragment : Fragment(), HomeAdapter.Result {
         initOnBoard()
         initAdapter()
         binding.btnAdd.setOnClickListener {
-            findNavController().navigate(R.id.addCategoryFragment)
+            val bundle = Bundle()
+            bundle.putString("key" ,"category")
+            findNavController().navigate(R.id.addCategoryFragment,bundle)
         }
+
     }
 
     private fun initAdapter() {
-        adapter = HomeAdapter(this)
-        adapter.setList(App.database.getDao().getAllCard())
-        binding.rvMain.adapter = adapter
-    }
-
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        adapter = HomeAdapter(this)
-        adapter.setList(App.database.getDao().getAllCard())
-        binding.rvMain.adapter = adapter
-    }
-
-    override fun onStart() {
-        super.onStart()
         adapter = HomeAdapter(this)
         adapter.setList(App.database.getDao().getAllCard())
         binding.rvMain.adapter = adapter
@@ -66,7 +53,10 @@ class HomeFragment : Fragment(), HomeAdapter.Result {
     override fun OnClick(pos: Int, list: List<CategoryModel>) {
         val bundle  = Bundle()
         val cat = ArrayList(list)
-        bundle.putSerializable("pos", cat)
+        bundle.putSerializable("list", cat)
+        bundle.putInt("pos",pos)
         findNavController().navigate(R.id.categoryFragment, bundle)
     }
+
+
 }

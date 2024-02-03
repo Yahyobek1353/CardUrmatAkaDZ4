@@ -3,6 +3,7 @@ package com.example.card.data.room.dao
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Update
 import com.example.card.data.room.model.CardModel
 
 @Dao
@@ -14,4 +15,7 @@ interface CardDao {
 
     @Insert
     fun insertCard(model: CardModel)
+
+    @Update
+    fun updateCard(model: CardModel)
 }
