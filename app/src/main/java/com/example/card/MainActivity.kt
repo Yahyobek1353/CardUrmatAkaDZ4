@@ -22,16 +22,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
+        hideBottomNav()
         initBottomNav()
         initBottom()
+        showBottomNav()
     }
     private fun initBottom(){
         navController.addOnDestinationChangedListener { _, destination, _ ->
             if(destination.id == R.id.onBoard) {
-
                 binding.bottomNav.visibility = View.GONE
-
             } else {
 
                 binding.bottomNav.visibility = View.VISIBLE
