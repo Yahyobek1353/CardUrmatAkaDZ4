@@ -58,6 +58,7 @@ class RegisterFragment : Fragment() {
                     if (it.isSuccessful){
                         mAuth.signOut()
                         Toast.makeText(requireContext(),"Aкааунт создан успешно",Toast.LENGTH_SHORT)
+                        findNavController().navigate(R.id.homeFragment)
                     }
                     else{
                         Log.e("error:", it.exception.toString())
@@ -65,7 +66,7 @@ class RegisterFragment : Fragment() {
                     }
 
 
-                    findNavController().navigate(R.id.homeFragment)   }
+                      }
             }
 
 
@@ -112,9 +113,6 @@ class RegisterFragment : Fragment() {
             binding.textInputLayoutPassword.errorIconDrawable = null
 
         }
-
-
-
         if (binding.pwEdConfirm.text.toString()== ""){
             binding.textInputLayoutConfirmPassword.error = "This is required field"
             binding.textInputLayoutConfirmPassword.errorIconDrawable = null

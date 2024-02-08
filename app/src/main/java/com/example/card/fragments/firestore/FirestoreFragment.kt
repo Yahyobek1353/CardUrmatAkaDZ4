@@ -21,10 +21,10 @@ class FirestoreFragment : Fragment() {
         return binding.root
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val myWebView: WebView = binding.wbMain
-        myWebView.loadUrl("https://console.firebase.google.com/project/card-ce8bd/authentication/users")
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
     }
 
 
