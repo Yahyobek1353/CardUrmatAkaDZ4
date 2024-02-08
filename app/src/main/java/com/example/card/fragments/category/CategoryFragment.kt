@@ -49,7 +49,6 @@ class CategoryFragment : Fragment() {
                 bundle.putInt("position" , pos)
                 findNavController().navigate(R.id.addCategoryFragment,bundle)
             }
-
         }
         //Если аргумент не пустой - конец
     }
